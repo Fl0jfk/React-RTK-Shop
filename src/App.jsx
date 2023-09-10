@@ -1,6 +1,7 @@
 import TvView from './app/features/tvs/TvView';
 import PhoneView from "./app/features/phones/PhoneView";
 import AdminView from './app/features/admin/AdminView';
+import CommentsView from './app/features/comments/CommentsView';
 
 
 function App() {
@@ -11,6 +12,8 @@ function App() {
         <TvView/>
       </div>
       <AdminView/>
+      <hr/>
+      <CommentsView/>
     </>
     
   );
