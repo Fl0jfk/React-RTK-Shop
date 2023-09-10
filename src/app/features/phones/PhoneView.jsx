@@ -1,7 +1,7 @@
 import phone from '../../../images/phone.png';
 import tablet from '../../../images/tablet.png'
 import { useDispatch, useSelector } from 'react-redux';
-import { phones as phonesAction, tablets as tabletsAction } from './PhoneSlice';
+import { phones as phonesAction, tablets as tabletsAction} from './PhoneSlice';
 import { useState } from 'react';
 
 function PhoneView(){
@@ -17,30 +17,40 @@ function PhoneView(){
                 <p>Disponibilité:
                     <span className='count'> { phones }</span>
                 </p>
-                <div className='btnContainer'>
-                    <button onClick={() => dispatch(phonesAction(phoneNum))}>Acheter</button>
-                    <input 
-                        type="number" 
-                        value={phoneNum}
-                        onChange={e => setPhoneNum(e.target.value)}
-                        min="1"
-                    />
-                </div>
+                {
+                    phones > 0  && (
+                        <div className='btnContainer'>
+                            <button onClick={() => dispatch(phonesAction(phoneNum))}>Acheter</button>
+                            <input 
+                                type="number" 
+                                value={phoneNum}
+                                onChange={e => setPhoneNum(e.target.value)}
+                                min="1"
+                                max={phones}
+                            />
+                        </div>
+                    )
+                }   
             </div>
             <div className="container">
                 <img src={tablet} alt="tablet"/>
                 <p>Disponibilité:
                     <span className='count'> { tablets }</span>
                 </p>
-                <div className='btnContainer'>
-                    <button onClick={() => dispatch(tabletsAction(tabletNum))}>Acheter</button>
-                    <input 
-                        min="1"
-                        type="number" 
-                        value={tabletNum}
-                        onChange={e => setTabletNum(e.target.value)}
-                    />
-                </div>
+                {
+                    tablets > 0  && (
+                        <div className='btnContainer'>
+                            <button onClick={() => dispatch(tabletsAction(tabletNum))}>Acheter</button>
+                            <input 
+                                min="1"
+                                type="number" 
+                                value={tabletNum}
+                                onChange={e => setTabletNum(e.target.value)}
+                                max= {tablets}
+                            />
+                        </div>
+                    )
+                }
             </div>
         </>  
     )

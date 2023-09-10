@@ -13,16 +13,26 @@ const PhoneSlice = createSlice({
         phones: (state, action) => {
             state.phones -= action.payload
         },
+        addPhones: (state,action)=> {
+            state.phones += action.payload
+        },
         tablets: (state, action) => {
             state.tablets -= action.payload
+        },
+        addTablets: (state, action) => {
+            state.tablets += action.payload
         }
     },
     extraReducers: builder => {
         builder.addCase(tvsAction, (state, action) => {
-            state.phones -= action.payload
+            if(action.payload <= state.phones){
+                state.phones -= action.payload
+            } else if(action.payload > state.phones){
+                state.phones = 0;
+            }           
         })
     }
 })
 
 export default PhoneSlice.reducer;
-export const { phones, tablets } = PhoneSlice.actions;
+export const { phones, tablets, addPhones, addTablets } = PhoneSlice.actions;
